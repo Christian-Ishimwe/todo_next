@@ -1,8 +1,10 @@
 /** @type {import('next').NextConfig} */
+import "dotenv/config";
+const DATABASE_URL = process.env.DATABASE_URL;
 const nextConfig = {
-    env:{
-        DATABASE_URL: "postgresql://todo_owner:CrF4DYn1RwqN@ep-late-cake-a28y8oqo.eu-central-1.aws.neon.tech/todo?sslmode=require"
-    }
+  env: {
+    DATABASE_URL: DATABASE_URL,
+  },
 };
 
 export default nextConfig;

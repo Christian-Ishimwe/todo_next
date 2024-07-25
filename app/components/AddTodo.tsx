@@ -13,7 +13,7 @@ const AddTodo: FC<Props> = ({ createTodo }) => {
   const handleAdd = async () => {
     createTodo(input);
     setInput("");
-  };    
+  };
 
   return (
     <div className="w-full flex gap-1 mt-2">

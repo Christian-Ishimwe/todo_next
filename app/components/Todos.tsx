@@ -3,7 +3,12 @@ import { FC, useState } from "react";
 import { todoType } from "@/types/todoType";
 import Todo from "./Todo";
 import AddTodo from "./AddTodo";
-import { addTodo, deleteTodo, editTodo, toggleTodo } from "@/actions/todoActions";
+import {
+  addTodo,
+  deleteTodo,
+  editTodo,
+  toggleTodo,
+} from "@/actions/todoActions";
 
 interface Props {
   todos: todoType[];
@@ -19,14 +24,16 @@ const Todos: FC<Props> = ({ todos }) => {
 
   const changeTodoText = (id: number, text: string) => {
     setTodoItems((prev) =>
-      prev.map((todo) => (todo.id === id ? { ...todo, text } : todo))
+      prev.map((todo) => (todo.id === id ? { ...todo, text } : todo)),
     );
     editTodo(id, text);
   };
 
   const toggleIsTodoDone = (id: number) => {
     setTodoItems((prev) =>
-      prev.map((todo) => (todo.id === id ? { ...todo, done: !todo.done } : todo))
+      prev.map((todo) =>
+        todo.id === id ? { ...todo, done: !todo.done } : todo,
+      ),
     );
     toggleTodo(id);
   };
@@ -40,7 +47,6 @@ const Todos: FC<Props> = ({ todos }) => {
     <main className="flex mx-auto max-w-xl w-full min-h-screen flex-col items-center p-16">
       <div className="text-5xl font-medium">Christian To-do app</div>
       <div className="w-full flex flex-col mt-8 gap-2">
-
         {todoItems.map((todo) => (
           <Todo
             key={todo.id}
