@@ -4,9 +4,9 @@ import { todoType } from "@/types/todoType";
 
 interface Props {
   todo: todoType;
-  changeTodoText: (id: number, text: string) => void;
-  toggleIsTodoDone: (id: number, done: boolean) => void;
-  deleteTodoItem: (id: number) => void;
+  changeTodoText: (id: string, text: string) => void;
+  toggleIsTodoDone: (id: string, done: boolean) => void;
+  deleteTodoItem: (id: string) => void;
 }
 
 const Todo: FC<Props> = ({
@@ -26,7 +26,7 @@ const Todo: FC<Props> = ({
   };
 
   const handleIsDone = async () => {
-    toggleIsTodoDone(todo.id, !isDone);
+    await toggleIsTodoDone(todo.id, !isDone);
     setIsDone((prev) => !prev);
   };
 
@@ -49,9 +49,9 @@ const Todo: FC<Props> = ({
       deleteTodoItem(todo.id);
     }
   };
-
+  console.log( `Status: ${isDone}`)
   return (
-    <div className="flex items-center gap-2 p-4 border-gray-200 border-solid border rounded-lg">
+    <div className="flex items-center gap-2 p-4  bg-slate-700  border-none rounded-lg">
       <input
         type="checkbox"
         className="text-blue-200 rounded-sm h-4 w-4"
@@ -65,7 +65,7 @@ const Todo: FC<Props> = ({
         readOnly={!editing}
         className={`${
           todo.done ? "line-through" : ""
-        } outline-none read-only:border-transparent focus:border border-gray-200 rounded px-2 py-1 w-full`}
+        } ${!editing? "" : "border border-solid border-white" } outline-none read-only:border-transparent focus:border border-gray-200 bg-inherit rounded px-2 py-1 w-full text-gray-300 `}
       />
       <div className="flex gap-1 ml-auto">
         {editing ? (
