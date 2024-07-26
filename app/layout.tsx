@@ -4,12 +4,13 @@ import "./globals.css";
 import '@radix-ui/themes/styles.css';
 import { Theme } from '@radix-ui/themes';
 import { Toaster } from "@/components/ui/toaster";
+import { SessionProvider } from 'next-auth/react';
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Christia App",
-  description: "Simple to do app",
+  description: "Simple to-do app",
 };
 
 export default function RootLayout({
@@ -20,12 +21,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <Theme>
-        {children}
-        </Theme>
-                <Toaster />
-
-        </body>
+        <SessionProvider>
+          <Theme>
+            {children}
+          </Theme>
+          <Toaster />
+        </SessionProvider>
+      </body>
     </html>
   );
 }

@@ -4,3 +4,11 @@ export const todo = pgTable("todo", {
   text: text("text").notNull(),
   done: boolean("done").default(false).notNull(),
 });
+
+
+export const Users= pgTable("Users", {
+  id: text("id").primaryKey(),
+  username: text("username").notNull(),
+  email: text("email").unique(),
+  password: text("password")
+})
